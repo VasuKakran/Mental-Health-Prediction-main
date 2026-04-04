@@ -1,5 +1,4 @@
 from flask import Flask,url_for, redirect, render_template , request
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from pandas import DataFrame
 import pickle
@@ -9,11 +8,13 @@ import base64
 from io import BytesIO
 import pandas as pd
 import numpy as np
+from pathlib import Path
 
 matplotlib.use('Agg')
-model = pickle.load(open(r"C:\Users\AKHIL\OneDrive\Documents\PROJECT_COLLEGE\Mental-Health-Prediction-Using-Machine-Learning\Mental-Health-Prediction-Using-Machine-Learning\model.pkl", 'rb'))
-ct = pickle.load(open(r"C:\Users\AKHIL\OneDrive\Documents\PROJECT_COLLEGE\Mental-Health-Prediction-Using-Machine-Learning\Mental-Health-Prediction-Using-Machine-Learning\ct.pkl", "rb"))
-le = pickle.load(open(r"C:\Users\AKHIL\OneDrive\Documents\PROJECT_COLLEGE\Mental-Health-Prediction-Using-Machine-Learning\Mental-Health-Prediction-Using-Machine-Learning\le.pkl", "rb"))
+BASE_DIR = Path(__file__).resolve().parent
+model = pickle.load(open(BASE_DIR / "model.pkl", "rb"))
+ct = pickle.load(open(BASE_DIR / "ct.pkl", "rb"))
+le = pickle.load(open(BASE_DIR / "le.pkl", "rb"))
 app = Flask(__name__) 
 
 @app.route('/')
