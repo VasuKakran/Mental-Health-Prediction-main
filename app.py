@@ -1,5 +1,4 @@
-from flask import Flask,url_for, redirect, render_template , request
-from datetime import datetime
+from flask import Flask, render_template, request
 from pandas import DataFrame
 import pickle
 import matplotlib.pyplot as plt
@@ -21,8 +20,6 @@ app = Flask(__name__)
 def hello_world():
     return render_template('index.html')
     
-
-
 @app.get('/form')
 def show_form():
      return render_template('form.html')
@@ -59,7 +56,7 @@ def submit_form():
     y = model.predict(x)
     treatment = le.inverse_transform(y)[0]
 
-    dataf = pd.read_csv(r"C:\Users\AKHIL\OneDrive\Documents\PROJECT_COLLEGE\Mental-Health-Prediction-Using-Machine-Learning\Mental-Health-Prediction-Using-Machine-Learning\processed_data.csv")
+    dataf = pd.read_csv(BASE_DIR / "processed_data.csv")
     print(dataf.columns)
     yes_counts = []
     no_counts = []
@@ -112,7 +109,7 @@ def submit_form():
 
 @app.route('/teampage')
 def teampage():
-    return 'Welcome to Team page.'
+    return 'Designed By VASU KAKRAN'
 
 
 if __name__=="__main__":
